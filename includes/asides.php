@@ -2,21 +2,32 @@
 echo '
 <div class="asides">
     <aside>
-        <h3>Infos réalisateur</h3>
+        <h3>Infos réalisateur</h3>';
+
+
+for ($i = 0 ; $i < sizeof($data) ; ++$i) {
+    if ($data[$i]['role'] == "director") {
+        echo '
         <figure>
-            <img src="' . $data[0]['path'] . '">
-            <figcaption>' . $data[0]['legend'] . '</figcaption>
-        </figure>
+            <img src="' . $data[$i]['path'] . '">
+            <figcaption>' . $data[$i]['legend'] . '</figcaption>
+        </figure>';
+    }
+}
+
+
+echo '
     </aside>
     <aside>
-        <h3>Infos acteurs</h3>
+        <h3>Infos acteurs</h3>';
+for ($i = 0 ; $i < sizeof($data) ; ++$i) {
+    if ($data[$i]['role'] == "actor") {
+        echo '
         <figure>
-            <img src="' . $data[1]['path'] . '">
-            <figcaption>' . $data[1]['legend'] . '</figcaption>
-        </figure>
-        <figure>
-            <img src="' . $data[2]['path'] . '">
-            <figcaption>' . $data[2]['legend'] . '</figcaption>
-        </figure>
-    </aside>
-</div>';
+            <img src="' . $data[$i]['path'] . '">
+            <figcaption>' . $data[$i]['legend'] . '</figcaption>
+        </figure>';
+    }
+}
+
+echo '</aside></div>';

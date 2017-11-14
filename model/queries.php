@@ -74,10 +74,10 @@ function getPersonData($id) {
     }
 }
 
-function getAsideData() {
+function getAsideData($idMovie) {
     $db = SPDO::getInstance();
-    $query= $db->prepare('SELECT * FROM picture JOIN personHasPicture ON id = idPicture JOIN movieHasPerson ON ');
-    // $query->bindValue(':idMovie', $idMovie, PDO::PARAM_STR);
+    $query= $db->prepare('SELECT path, legend, role FROM picture JOIN personHasPicture pHP ON id = pHP.idPicture JOIN movieHasPerson mHP ON pHP.idPerson = mHP.idPerson WHERE mHP.idMovie = :idMovie');
+     $query->bindValue(':idMovie', $idMovie, PDO::PARAM_STR);
     $query->execute();
     $result = $query->fetchAll();
     if (empty($result)) {
@@ -89,7 +89,7 @@ function getAsideData() {
 
 function getMovieImagesData($idMovie) {
     $db = SPDO::getInstance();
-    $query= $db->prepare('SELECT * FROM picture JOIN movieHasPicture ON id = idPicture WHERE idMovie = :idMovie');
+    $query= $db->prepare('SELECT path, legend FROM picture JOIN movieHasPicture ON id = idPicture WHERE idMovie = :idMovie');
     $query->bindValue(':idMovie', $idMovie, PDO::PARAM_STR);
     $query->execute();
     $result = $query->fetchAll();
