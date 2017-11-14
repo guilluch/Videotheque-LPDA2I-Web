@@ -16,7 +16,11 @@
 <main class="container material-boxed">
     <h1>Réalisateur</h1>
     <section>
-        <?php getBlock('directorInfos.php', getPersonData(1)); ?>
+        <?php
+        getBlock('directorInfos.php', getPersonData(1));
+        getBlock('fetishActors.php', getFetishActorsData(1));
+        ?>
+
     </section>
 </main>
 <?php getBlock('footer.php'); ?>

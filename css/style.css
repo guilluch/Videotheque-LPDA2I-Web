@@ -2,6 +2,10 @@ body {
     margin: 0;
 }
 
+p {
+    text-align: justify;
+}
+
 
 /*header {
     width: 100%;

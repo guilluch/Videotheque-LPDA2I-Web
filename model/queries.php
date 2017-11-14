@@ -112,3 +112,16 @@ function getMovieActorsData($idMovie) {
         return $result;
     }
 }
+
+function getFetishActorsData($idDirector) {
+    $db = SPDO::getInstance();
+    $query= $db->prepare('SELECT path, legend FROM picture JOIN personHasPicture ON id = idPicture JOIN directorHasFetish dHF ON idPerson = idFetish WHERE idDirector = :idDirector');
+    $query->bindValue(':idDirector', $idDirector);
+    $query->execute();
+    $result = $query->fetchAll();
+    if (empty($result)) {
+        return "error 404";
+    } else {
+        return $result;
+    }
+}
