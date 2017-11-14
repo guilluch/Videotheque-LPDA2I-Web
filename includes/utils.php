@@ -5,5 +5,5 @@ require_once 'model/queries.php';
 ini_set('display_errors', 'on');*/
 
 function getBlock($file, $data = []) {
-    require 'includes/'.$file;
+    require 'view/'.$file;
 }

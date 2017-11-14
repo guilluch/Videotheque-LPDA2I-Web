@@ -9,7 +9,7 @@ for ($i = 0 ; $i < sizeof($data) ; ++$i) {
     if ($data[$i]['role'] == "director") {
         echo '
         <figure>
-            <img src="' . $data[$i]['path'] . '">
+            <a href="realisateur.php?id=' . ($i+1) . '"><img src="' . $data[$i]['path'] . '"></a>
             <figcaption>' . $data[$i]['legend'] . '</figcaption>
         </figure>';
     }
@@ -24,7 +24,7 @@ for ($i = 0 ; $i < sizeof($data) ; ++$i) {
     if ($data[$i]['role'] == "actor") {
         echo '
         <figure>
-            <img src="' . $data[$i]['path'] . '">
+            <a href="actor.php?id=' . ($i+1) . '"><img src="' . $data[$i]['path'] . '"></a>
             <figcaption>' . $data[$i]['legend'] . '</figcaption>
         </figure>';
     }

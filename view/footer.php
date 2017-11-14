@@ -11,4 +11,6 @@ echo '
     </a>.
     <br/>
     Guillaume Lluch
-</footer>';
+</footer>
+</body>
+</html>';

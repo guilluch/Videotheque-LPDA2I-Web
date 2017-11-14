@@ -1,7 +1,7 @@
 <?php
 echo '
 <article>
-    <img src="images/nolan.jpg">
+    <img src="' . $data['path'] . '">
     <p>Prénom : ' . $data['firstname'] . '</p>
     <p>Nom : ' . $data['lastname'] . '</p>
     <p>Date de naissance :

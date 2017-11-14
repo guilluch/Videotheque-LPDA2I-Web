@@ -62,7 +62,7 @@ function getMovieData($id) {
 
 function getPersonData($id) {
     $db = SPDO::getInstance();
-    $query= $db->prepare('SELECT * FROM person WHERE id=:id');
+    $query= $db->prepare('SELECT path, firstname, lastname, birthDate, biography FROM person JOIN personHasPicture ON person.id = idPerson JOIN picture ON picture.id = idPicture WHERE person.id=:id');
     $query->bindValue(':id', $id);
     $query->execute();
     $result = $query->fetch();
