@@ -5,7 +5,7 @@ function getUsername($idUser) {
 
     $db = SPDO::getInstance();
     $requete= $db->prepare('SELECT username FROM user WHERE id_user = :id_user');
-    $requete->bindValue(':id_user', $idUser, PDO::PARAM_STR);
+    $requete->bindValue(':id_user', $idUser);
     $requete->execute();
     $resultat = $requete->fetch();
 
@@ -19,8 +19,8 @@ function getUsername($idUser) {
 function getDiaryTitle($idDiary, $idUser) {
     $db = SPDO::getInstance();
     $requete= $db->prepare('SELECT title FROM diary WHERE id_diary = :id_diary AND id_user = :id_user');
-    $requete->bindValue(':id_diary', $idDiary, PDO::PARAM_STR);
-    $requete->bindValue(':id_user', $idUser,PDO::PARAM_STR);
+    $requete->bindValue(':id_diary', $idDiary);
+    $requete->bindValue(':id_user', $idUser);
     $requete->execute();
     $resultat = $requete->fetch();
 
@@ -34,7 +34,7 @@ function getDiaryTitle($idDiary, $idUser) {
 function getMovieTitle($id) {
     $db = SPDO::getInstance();
     $query= $db->prepare('SELECT title FROM movie WHERE id=:id');
-    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->bindValue(':id', $id);
     $query->execute();
     $result = $query->fetch();
 
@@ -48,7 +48,7 @@ function getMovieTitle($id) {
 function getMovieData($id) {
     $db = SPDO::getInstance();
     $query= $db->prepare('SELECT * FROM movie WHERE id=:id');
-    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->bindValue(':id', $id);
     $query->execute();
     $result = $query->fetch();
 
@@ -63,7 +63,7 @@ function getMovieData($id) {
 function getPersonData($id) {
     $db = SPDO::getInstance();
     $query= $db->prepare('SELECT * FROM person WHERE id=:id');
-    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->bindValue(':id', $id);
     $query->execute();
     $result = $query->fetch();
 
@@ -77,7 +77,7 @@ function getPersonData($id) {
 function getAsideData($idMovie) {
     $db = SPDO::getInstance();
     $query= $db->prepare('SELECT path, legend, role FROM picture JOIN personHasPicture pHP ON id = pHP.idPicture JOIN movieHasPerson mHP ON pHP.idPerson = mHP.idPerson WHERE mHP.idMovie = :idMovie');
-     $query->bindValue(':idMovie', $idMovie, PDO::PARAM_STR);
+     $query->bindValue(':idMovie', $idMovie);
     $query->execute();
     $result = $query->fetchAll();
     if (empty($result)) {
@@ -90,7 +90,20 @@ function getAsideData($idMovie) {
 function getMovieImagesData($idMovie) {
     $db = SPDO::getInstance();
     $query= $db->prepare('SELECT path, legend FROM picture JOIN movieHasPicture ON id = idPicture WHERE idMovie = :idMovie');
-    $query->bindValue(':idMovie', $idMovie, PDO::PARAM_STR);
+    $query->bindValue(':idMovie', $idMovie);
+    $query->execute();
+    $result = $query->fetchAll();
+    if (empty($result)) {
+        return "error 404";
+    } else {
+        return $result;
+    }
+}
+
+function getMovieActorsData($idMovie) {
+    $db = SPDO::getInstance();
+    $query= $db->prepare('SELECT firstname, lastname FROM person JOIN movieHasPerson ON id = idPerson WHERE idMovie = :idMovie AND role = \'actor\'');
+    $query->bindValue(':idMovie', $idMovie);
     $query->execute();
     $result = $query->fetchAll();
     if (empty($result)) {
