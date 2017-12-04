@@ -12,5 +12,7 @@ echo '
     <br/>
     Guillaume Lluch
 </footer>
+<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>';
