@@ -15,7 +15,7 @@ $(document).ready(function () {
         $('nav ul').slideToggle();
     });
 
-    $('dt').on('click', function(evt) {
+    $('dd').on('click', function(evt) {
         alert($(this).text());
         evt.stopPropagation();
     });
