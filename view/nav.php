@@ -9,7 +9,7 @@ echo '
             <li><a href="faq.php">FAQ</a></li>
         </ul>
     </nav>
-    <a id="hideAside" href="javascript:void()">Hide aside</a>
-    <a id="fadeImg" href="javascript:void()">Fade image</a>
-    <a id="toggleMenu" href="javascript:void()">Toggle menu</a>
+    <button id="hideAside">Hide aside</button>
+    <button id="fadeImg">Fade image</button>
+    <button id="toggleMenu">Toggle menu</button>
 </header>';

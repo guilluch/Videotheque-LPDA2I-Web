@@ -1,7 +1,7 @@
 <?php
 echo '
-<article>
-    <dl id="faq">
+<article id="faq">
+    <dl>
         <dt>Question 1, Lorem Ipsum is simply dummy text of the printing and typesetting industry ?</dt>
         <dd>
             <dl>
