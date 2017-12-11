@@ -1,4 +1,29 @@
-var persistant = false;
+function addFaqListener() {
+    /*$("#faq > dl").on("mouseenter", function (evt) {
+
+        $("#faq > dl").not($(this)).each(function(key, el) {
+            if ($(el).data("persistant") === undefined) {
+                console.log($(el).data("persistant") === undefined);
+                $(el).find("dd").slideUp(300);
+            }
+        });
+        $(this).find("dd").slideDown(300);
+    });*/
+
+    $("#faq").find("dl").on("click", function (evt) {
+        // $("#faq > dl > dd").not($(this).find("dd")).slideUp(300);
+        if ($(this).data("persistant")) {
+            $(this).removeData("persistant");
+        } else {
+            $(this).data("persistant", true);
+        }
+        if ($(this).data("persistant")) {
+            $(this).find("dd").slideDown(300);
+        } else {
+            $(this).find("dd").slideUp(300);
+        }
+    });
+}
 
 $(document).ready(function () {
     /*$("aside").hide(2000);
@@ -17,43 +42,17 @@ $(document).ready(function () {
         $("nav ul").slideToggle(300);
     });
 
-    /*$("dd").on("click", function(evt) {
-        alert($(this).text());
-        evt.stopPropagation();
-    });*/
+    addFaqListener();
 
-    $("#faq > dl").on("mouseenter", function (evt) {
-        /*if (!persistant) {
-            $("#faq > dl > dd").not($(this).find("dd")).slideUp(300);
-            $(this).find("dd").slideDown(300);
-        }*/
+    $('#faq-aside').find("a").on("click", function(evt) {
+        var parent = $(this).parent();
+        parent.html('<img class="loader" src="images/loading.gif"/>');
+        parent.load("view/questionsFaq.php#faq", addFaqListener);
+    });
 
-        $("#faq > dl").not($(this)).each(function(key, el) {
-            if ($(el).data("persistant") === undefined) {
-                console.log($(el).data("persistant") === undefined);
-                $(el).find("dd").slideUp(300);
-            }
+    $('#add-movie').on('click', function(evt) {
+        $('main').load('view/movieCreationForm.php', function() {
+            console.log("Success");
         });
-        $(this).find("dd").slideDown(300);
     });
-
-    $("#faq > dl").on("click", function (evt) {
-        // $("#faq > dl > dd").not($(this).find("dd")).slideUp(300);
-        if ($(this).data("persistant")) {
-            $(this).removeData("persistant");
-            persistant = false;
-        } else {
-            $(this).data("persistant", true);
-            persistant = true;
-        }
-        if ($(this).data("persistant")) {
-            $(this).find("dd").slideDown(300);
-        } else {
-            $(this).find("dd").slideUp(300);
-        }
-    });
-
-    /*$("#faq > dl").on("mouseleave", function () {
-        $(this).find("dd").slideUp();
-    });*/
 });

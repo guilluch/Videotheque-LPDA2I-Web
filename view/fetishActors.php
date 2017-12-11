@@ -6,7 +6,7 @@ echo '
 for ($i = 0 ; $i < sizeof($data) ; ++$i) {
         echo '
         <figure>
-            <img src="' . $data[$i]['path'] . '">
+            <a><img class="portrait hoverable" src="' . $data[$i]['path'] . '"></a>
             <figcaption>' . $data[$i]['legend'] . '</figcaption>
         </figure>';
 }

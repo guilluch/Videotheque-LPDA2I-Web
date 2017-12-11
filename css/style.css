@@ -53,22 +53,25 @@ h1, h2, h3 {
     text-align: center;
 }
 
+aside {
+    text-align: center;
+}
+
 aside a {
     text-align: center;
     width: 50%;
     margin: auto;
 }
 
-aside img {
-    width: 50%;
+aside .portrait {
+    width: 100%;
     margin: auto;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
 }
 
-aside a img {
-    width: 100%;
-    margin: auto;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+aside .loader {
+    width: 2.6rem;
+    height: 2.6rem;
 }
 
 figcaption {
@@ -150,8 +153,7 @@ article > img {
     }
 
     main > section > article {
-        flex-grow: 2;
-        flex-basis: 0;
+        flex: 2;
     }
 
     article > img {
@@ -162,8 +164,7 @@ article > img {
     .asides {
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
-        flex-basis: 0;
+        flex: 1;
     }
 
     .images {
@@ -180,4 +181,8 @@ article > img {
 
 #faq > dl > dd {
     display: none;
+}
+
+#faq > dl {
+    cursor: pointer;
 }
