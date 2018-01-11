@@ -62,7 +62,7 @@ function getMovieData($id) {
 
 function getPersonData($id) {
     $db = SPDO::getInstance();
-    $query= $db->prepare('SELECT * FROM person WHERE id=:id');
+    $query= $db->prepare('SELECT path, firstname, lastname, birthDate, biography FROM person JOIN personHasPicture ON person.id = idPerson JOIN picture ON picture.id = idPicture WHERE person.id=:id');
     $query->bindValue(':id', $id);
     $query->execute();
     $result = $query->fetch();
@@ -104,6 +104,19 @@ function getMovieActorsData($idMovie) {
     $db = SPDO::getInstance();
     $query= $db->prepare('SELECT firstname, lastname FROM person JOIN movieHasPerson ON id = idPerson WHERE idMovie = :idMovie AND role = \'actor\'');
     $query->bindValue(':idMovie', $idMovie);
+    $query->execute();
+    $result = $query->fetchAll();
+    if (empty($result)) {
+        return "error 404";
+    } else {
+        return $result;
+    }
+}
+
+function getFetishActorsData($idDirector) {
+    $db = SPDO::getInstance();
+    $query= $db->prepare('SELECT path, legend FROM picture JOIN personHasPicture ON id = idPicture JOIN directorHasFetish dHF ON idPerson = idFetish WHERE idDirector = :idDirector');
+    $query->bindValue(':idDirector', $idDirector);
     $query->execute();
     $result = $query->fetchAll();
     if (empty($result)) {
